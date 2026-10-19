@@ -1,0 +1,1174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A literary journey into the life, poetry, and imagination of Emily Dickinson.">
+  <title>Emily Dickinson | The Woman Behind the Poems</title>
+
+  <!-- Elegant nineteenth-century typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       1. COLOURS, RESET & GENERAL PAGE STYLING
+    ========================================= */
+
+    :root {
+      --paper: #f6efdf;
+      --paper-dark: #e8dbc0;
+      --ink: #30291f;
+      --wine: #713c46;
+      --sage: #687963;
+      --gold: #a58a59;
+      --line: rgba(113, 91, 61, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 95px;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      line-height: 1.85;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--wine);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--sage);
+    }
+
+    ::selection {
+      background: var(--wine);
+      color: white;
+    }
+
+    /* Aged paper texture without an external background image */
+    .paper-texture {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.2;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 5px,
+          rgba(100, 75, 42, 0.025) 6px
+        ),
+        radial-gradient(ellipse at 20% 30%,
+          rgba(168, 136, 83, 0.12), transparent 60%);
+    }
+
+    /* =========================================
+       2. NAVIGATION
+    ========================================= */
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(246, 239, 223, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      max-width: 1180px;
+      min-height: 65px;
+      margin: auto;
+      padding: 10px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .brand {
+      font-family: 'IM Fell English', serif;
+      font-size: 20px;
+      color: var(--wine);
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* =========================================
+       3. OPENING / HERO SECTION
+    ========================================= */
+
+    .hero {
+      min-height: 650px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 75px 25px 100px;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at center,
+          rgba(255, 252, 242, 0.95) 0%,
+          rgba(246, 239, 223, 0.88) 48%,
+          rgba(223, 208, 178, 0.48) 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "❦";
+      position: absolute;
+      color: var(--gold);
+      opacity: 0.6;
+      font-size: 100px;
+      line-height: 1;
+    }
+
+    .hero::before {
+      top: 35px;
+      left: 5%;
+      transform: rotate(-25deg);
+    }
+
+    .hero::after {
+      right: 5%;
+      bottom: 35px;
+      transform: rotate(155deg);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 850px;
+      text-align: center;
+      animation: appear 1.4s ease both;
+    }
+
+    .eyebrow {
+      color: var(--wine);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 5px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(46px, 8vw, 100px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 1px;
+      color: #3d3027;
+      text-shadow: 1px 2px 0 rgba(165, 138, 89, 0.16);
+    }
+
+    .hero-subtitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(24px, 4vw, 37px);
+      color: var(--wine);
+      margin-top: 10px;
+      margin-bottom: 25px;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--gold);
+      margin: 25px auto;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      width: 85px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-intro {
+      max-width: 570px;
+      margin: auto;
+      font-size: 21px;
+      font-style: italic;
+    }
+
+    .explore-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 11px 28px;
+      border: 1px solid var(--wine);
+      color: var(--wine);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      transition: 0.3s ease;
+    }
+
+    .explore-button:hover {
+      background: var(--wine);
+      color: var(--paper);
+      transform: translateY(-3px);
+    }
+
+    /* =========================================
+       4. DECORATIVE FLOWERS & QUILL
+    ========================================= */
+
+    .flower {
+      position: absolute;
+      z-index: 1;
+      font-size: 35px;
+      color: var(--wine);
+      opacity: 0.7;
+      pointer-events: none;
+      animation: flowerFloat 7s ease-in-out infinite;
+    }
+
+    .flower-one {
+      left: 10%;
+      top: 30%;
+    }
+
+    .flower-two {
+      right: 12%;
+      top: 20%;
+      font-size: 48px;
+      animation-delay: -2s;
+    }
+
+    .flower-three {
+      left: 18%;
+      bottom: 14%;
+      font-size: 25px;
+      animation-delay: -4s;
+    }
+
+    .flower-four {
+      right: 19%;
+      bottom: 17%;
+      font-size: 30px;
+      animation-delay: -1s;
+    }
+
+    .quill-decoration {
+      position: absolute;
+      right: 7%;
+      bottom: 5%;
+      font-size: 58px;
+      color: var(--wine);
+      opacity: 0.55;
+      transform: rotate(-35deg);
+      animation: quillSway 4s ease-in-out infinite;
+    }
+
+    /* =========================================
+       5. ANIMATED VINTAGE CARRIAGE
+    ========================================= */
+
+    .carriage-road {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 95px;
+      overflow: hidden;
+      border-top: 1px solid rgba(113, 91, 61, 0.18);
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(180, 154, 112, 0.12)
+      );
+    }
+
+    .carriage {
+      position: absolute;
+      bottom: 10px;
+      left: -210px;
+      width: 190px;
+      height: 70px;
+      animation: carriageJourney 20s linear infinite;
+    }
+
+    .carriage svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .wheel {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: wheelTurn 2s linear infinite;
+    }
+
+    /* =========================================
+       6. MAIN LAYOUT & CONTENT SECTIONS
+    ========================================= */
+
+    .page-layout {
+      max-width: 1150px;
+      margin: auto;
+      padding: 75px 25px;
+    }
+
+    .section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--sage);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(30px, 4vw, 43px);
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 25px;
+      color: #47352c;
+    }
+
+    .section-heading::after {
+      content: " ✦";
+      font-family: serif;
+      font-size: 20px;
+      color: var(--gold);
+      vertical-align: middle;
+    }
+
+    .story-section {
+      padding: 45px 0 60px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+    }
+
+    .story-section p {
+      max-width: 850px;
+      font-size: 21px;
+      line-height: 1.9;
+    }
+
+    .story-section p::first-letter {
+      font-family: 'IM Fell English', serif;
+      font-size: 48px;
+      float: left;
+      line-height: 0.9;
+      padding-right: 9px;
+      padding-top: 8px;
+      color: var(--wine);
+    }
+
+    /* =========================================
+       7. INTRODUCTION WITH EMILY'S PORTRAIT
+    ========================================= */
+
+    .portrait-intro {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 65px;
+      align-items: center;
+      padding: 35px 0 75px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .portrait-frame {
+      position: relative;
+      padding: 13px;
+      background: #e8dcc2;
+      border: 1px solid var(--gold);
+      box-shadow: 8px 10px 0 rgba(113, 91, 61, 0.12);
+      max-width: 410px;
+      margin: auto;
+    }
+
+    .portrait-frame::before {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 1px solid rgba(113, 91, 61, 0.35);
+      pointer-events: none;
+    }
+
+    .portrait-frame img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center top;
+      filter: sepia(15%) contrast(0.97);
+      transition: filter 0.5s ease;
+    }
+
+    .portrait-frame:hover img {
+      filter: sepia(0%) contrast(1.05);
+    }
+
+    .portrait-caption {
+      text-align: center;
+      font-style: italic;
+      font-size: 16px;
+      padding: 12px 5px 3px;
+      color: #665344;
+    }
+
+    .intro-copy p {
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .signature {
+      font-family: 'Great Vibes', cursive;
+      font-size: 37px;
+      color: var(--wine);
+      margin-top: 18px;
+    }
+
+    /* =========================================
+       8. DECORATIVE QUOTE
+    ========================================= */
+
+    .quote-panel {
+      text-align: center;
+      margin: 65px 0;
+      padding: 42px 35px;
+      background: rgba(231, 218, 193, 0.5);
+      border-top: 1px solid var(--gold);
+      border-bottom: 1px solid var(--gold);
+      position: relative;
+    }
+
+    .quote-mark {
+      font-family: 'IM Fell English', serif;
+      font-size: 70px;
+      color: var(--gold);
+      line-height: 0.8;
+    }
+
+    .quote-panel blockquote {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: clamp(24px, 4vw, 35px);
+      line-height: 1.5;
+      max-width: 740px;
+      margin: 10px auto 15px;
+    }
+
+    .quote-credit {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--wine);
+    }
+
+    /* =========================================
+       9. FAMOUS WORKS / POEM CARDS
+    ========================================= */
+
+    .poetry-section {
+      padding: 70px 0 85px;
+    }
+
+    .poetry-intro {
+      max-width: 800px;
+      font-size: 21px;
+      margin-bottom: 35px;
+    }
+
+    .poem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .poem-card {
+      min-height: 255px;
+      padding: 28px 24px;
+      border: 1px solid var(--line);
+      background: rgba(255, 252, 242, 0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .poem-card::after {
+      content: "❧";
+      position: absolute;
+      right: -8px;
+      bottom: -28px;
+      font-size: 95px;
+      color: var(--gold);
+      opacity: 0.15;
+      transform: rotate(-20deg);
+    }
+
+    .poem-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(64, 47, 29, 0.1);
+      border-color: var(--gold);
+    }
+
+    .poem-number {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--sage);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .poem-card h3 {
+      font-family: 'IM Fell English', serif;
+      font-weight: 400;
+      font-size: 25px;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .poem-card p {
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .poem-link {
+      margin-top: auto;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--wine);
+      padding-bottom: 3px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =========================================
+       10. EXTERNAL READING RESOURCES
+    ========================================= */
+
+    .resources {
+      padding: 55px 35px;
+      text-align: center;
+      background: #e9deca;
+      border: 1px solid var(--line);
+    }
+
+    .resources p {
+      max-width: 700px;
+      margin: 0 auto 25px;
+      font-size: 21px;
+    }
+
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .resource-links a {
+      display: inline-block;
+      padding: 12px 22px;
+      border: 1px solid var(--wine);
+      font-size: 15px;
+      transition: 0.3s ease;
+    }
+
+    .resource-links a:hover {
+      background: var(--wine);
+      color: white;
+    }
+
+    /* =========================================
+       11. FOOTER & BACK TO TOP
+    ========================================= */
+
+    footer {
+      padding: 40px 20px 30px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-flourish {
+      font-size: 30px;
+      color: var(--gold);
+    }
+
+    footer p {
+      font-size: 15px;
+      margin-top: 5px;
+    }
+
+    .back-to-top {
+      display: inline-block;
+      margin-top: 18px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-bottom: 1px solid var(--wine);
+    }
+
+    /* =========================================
+       12. ENTRANCE ANIMATIONS
+    ========================================= */
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes flowerFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-8deg);
+      }
+      50% {
+        transform: translateY(-15px) rotate(8deg);
+      }
+    }
+
+    @keyframes quillSway {
+      0%, 100% {
+        transform: rotate(-35deg);
+      }
+      50% {
+        transform: rotate(-25deg);
+      }
+    }
+
+    @keyframes carriageJourney {
+      from {
+        left: -210px;
+      }
+      to {
+        left: calc(100% + 210px);
+      }
+    }
+
+    @keyframes wheelTurn {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================================
+       13. MOBILE RESPONSIVENESS
+    ========================================= */
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        flex-direction: column;
+        padding: 12px 15px;
+        gap: 5px;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 8px 16px;
+      }
+
+      nav a {
+        font-size: 11px;
+      }
+
+      .hero {
+        min-height: 570px;
+        padding: 65px 20px 110px;
+      }
+
+      .hero::before {
+        left: -10px;
+      }
+
+      .hero::after {
+        right: -10px;
+      }
+
+      .flower-one {
+        left: 4%;
+      }
+
+      .flower-two {
+        right: 4%;
+      }
+
+      .quill-decoration {
+        right: 3%;
+        font-size: 40px;
+      }
+
+      .page-layout {
+        padding: 45px 22px;
+      }
+
+      .portrait-intro {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding-top: 10px;
+      }
+
+      .portrait-frame {
+        width: min(100%, 340px);
+      }
+
+      .story-section {
+        padding: 35px 0 45px;
+      }
+
+      .story-section p,
+      .intro-copy p,
+      .poetry-intro {
+        font-size: 19px;
+      }
+
+      .poem-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .poem-card {
+        min-height: 220px;
+      }
+
+      .quote-panel {
+        padding: 35px 20px;
+        margin: 45px 0;
+      }
+
+      .resources {
+        padding: 40px 20px;
+      }
+    }
+
+    /* Respect visitors who prefer reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+
+  <div class="paper-texture" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="topbar">
+    <div class="nav-inner">
+      <a class="brand" href="#top">The Dickinson Journal</a>
+
+      <nav aria-label="Main navigation">
+        <a href="#introduction">Introduction</a>
+        <a href="#early-life">Her Life</a>
+        <a href="#poetic-world">Her Poetry</a>
+        <a href="#famous-works">Famous Works</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Opening -->
+    <section class="hero" aria-labelledby="main-title">
+
+      <span class="flower flower-one" aria-hidden="true">❀</span>
+      <span class="flower flower-two" aria-hidden="true">✿</span>
+      <span class="flower flower-three" aria-hidden="true">❧</span>
+      <span class="flower flower-four" aria-hidden="true">✾</span>
+      <span class="quill-decoration" aria-hidden="true">✒</span>
+
+      <div class="hero-content">
+        <p class="eyebrow">An American Literary Portrait · 1830–1886</p>
+
+        <h1 id="main-title">Emily Dickinson</h1>
+
+        <p class="hero-subtitle">
+          Getting to know the woman behind the poems
+        </p>
+
+        <div class="ornament" aria-hidden="true">❦</div>
+
+        <p class="hero-intro">
+          Behind a quiet life in Amherst lived a remarkable imagination
+          that found infinity in a flower, eternity in a carriage ride,
+          and extraordinary meaning in the smallest things.
+        </p>
+
+        <a class="explore-button" href="#introduction">
+          Turn the first page ↓
+        </a>
+      </div>
+
+      <!-- Original inline SVG illustration: horse and carriage -->
+      <div class="carriage-road" aria-hidden="true">
+        <div class="carriage">
+          <svg viewBox="0 0 220 85" xmlns="http://www.w3.org/2000/svg">
+
+            <!-- Horse -->
+            <g fill="#4d3a2e" stroke="#4d3a2e"
+               stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 35 Q5 27 12 18 L20 23
+                       Q30 18 38 26 L45 39
+                       L39 44 L30 38 L20 45 L12 42 Z"/>
+              <path d="M11 20 L7 12 L15 17 Z"/>
+              <path d="M17 43 L16 60 L12 62
+                       L15 45 M27 43 L29 60 L25 62 L24 43"
+                    fill="none" stroke-width="4"/>
+              <path d="M8 27 Q-1 25 2 17" fill="none" stroke-width="3"/>
+              <circle cx="18" cy="27" r="1.5" fill="#f6efdf" stroke="none"/>
+            </g>
+
+            <!-- Harness -->
+            <path d="M25 32 L53 45 L80 46"
+                  stroke="#a58a59" stroke-width="2" fill="none"/>
+
+            <!-- Carriage body -->
+            <path d="M73 30 L127 30 L140 51 L65 51 Z"
+                  fill="#713c46" stroke="#4d302b" stroke-width="2"/>
+            <path d="M80 30 L85 13 L116 13 L125 30"
+                  fill="#e8dbc0" stroke="#4d302b" stroke-width="2"/>
+            <path d="M90 16 L90 27 L111 27 L111 16 Z"
+                  fill="#bca77d" stroke="#713c46" stroke-width="2"/>
+            <path d="M100 14 L100 29" stroke="#713c46" stroke-width="2"/>
+            <path d="M70 36 L130 36" stroke="#c5a66c" stroke-width="2"/>
+
+            <!-- Driver -->
+            <circle cx="132" cy="20" r="6" fill="#4d3a2e"/>
+            <path d="M126 27 L138 27 L142 40 L127 40 Z"
+                  fill="#30291f"/>
+            <path d="M125 18 Q132 8 139 18 Z"
+                  fill="#30291f"/>
+
+            <!-- Wheels -->
+            <g class="wheel">
+              <circle cx="81" cy="55" r="14" fill="#e8dbc0"
+                      stroke="#4d302b" stroke-width="3"/>
+              <circle cx="81" cy="55" r="3" fill="#713c46"/>
+              <path d="M81 42 V68 M68 55 H94 M72 46 L90 64
+                       M72 64 L90 46"
+                    stroke="#713c46" stroke-width="1.5"/>
+            </g>
+
+            <g class="wheel">
+              <circle cx="124" cy="55" r="14" fill="#e8dbc0"
+                      stroke="#4d302b" stroke-width="3"/>
+              <circle cx="124" cy="55" r="3" fill="#713c46"/>
+              <path d="M124 42 V68 M111 55 H137 M115 46 L133 64
+                       M115 64 L133 46"
+                    stroke="#713c46" stroke-width="1.5"/>
+            </g>
+
+            <!-- Ground -->
+            <path d="M2 71 Q55 68 105 72 T218 71"
+                  fill="none" stroke="#a58a59" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-layout">
+
+      <!-- Introduction with portrait -->
+      <section class="portrait-intro" id="introduction">
+
+        <figure class="portrait-frame">
+          <img
+            src="https://www.emilydickinsonmuseum.org/wp-content/uploads/Theme-Images/daguerreotype-cropped-corrected-1.jpg"
+            alt="Historical daguerreotype portrait of Emily Dickinson, the nineteenth-century American poet."
+            loading="eager"
+          >
+          <figcaption class="portrait-caption">
+            Emily Dickinson · 1830–1886
+          </figcaption>
+        </figure>
+
+        <div class="intro-copy">
+          <p class="section-label">A Life in Verse</p>
+          <h2 class="section-heading">Meet the Poet Behind the Page</h2>
+
+          <p>
+            Emily Dickinson was an American poet whose unusual style and
+            powerful imagination changed the way poetry could be written.
+            Born in Amherst, Massachusetts, in 1830, she spent much of her
+            life in the family home, observing the world with extraordinary
+            attention.
+          </p>
+
+          <p>
+            Although she published very few poems during her lifetime,
+            she left behind nearly 1,800 poems. Her writing explored love,
+            nature, death, faith, identity, and the mysteries of existence.
+            With her distinctive dashes, unexpected capital letters, and
+            short but memorable lines, Dickinson created a poetic voice
+            that still feels intimate and surprisingly modern.
+          </p>
+
+          <p>
+            Her life reminds us that a quiet person can possess a world
+            of ideas, emotions, and questions far greater than anyone
+            might imagine.
+          </p>
+
+          <div class="signature">A mind beyond her time</div>
+        </div>
+      </section>
+
+      <!-- Decorative literary quotation -->
+      <aside class="quote-panel" aria-label="A line from Emily Dickinson">
+        <div class="quote-mark" aria-hidden="true">“</div>
+        <blockquote>
+          Hope is the thing with feathers<br>
+          That perches in the soul.
+        </blockquote>
+        <p class="quote-credit">Emily Dickinson · Poem 254</p>
+      </aside>
+
+      <!-- Section 1 -->
+      <section class="story-section" id="early-life">
+        <p class="section-label">Chapter One · The Beginning</p>
+        <h2 class="section-heading">1. Growing Up in Amherst</h2>
+
+        <p>
+          Born in Amherst, Massachusetts, in 1830, Emily Dickinson turned
+          her early studies at Amherst Academy and Mount Holyoke into a
+          lifelong pursuit of learning through books, correspondence, and
+          quiet observation. An avid gardener who compiled her own
+          herbarium, she possessed a rare ability to see profound life
+          questions in simple flowers, birds, and changing seasons. Early
+          encounters with illness and loss grounded her world, giving her
+          a sharp awareness of mortality that would inspire her to explore
+          life's deepest uncertainties through poetry.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="story-section">
+        <p class="section-label">Chapter Two · Family & Friendship</p>
+        <h2 class="section-heading">2. The People Who Shaped Her Life</h2>
+
+        <p>
+          Growing up as the middle child between her brother Austin and
+          sister Lavinia, Emily Dickinson was shaped by a complex family
+          dynamic in Amherst. While her relationship with her mother was
+          distant, her bonds with others ran deep—particularly with her
+          sister Lavinia, who protected her privacy and later discovered
+          nearly 1,800 hidden poems, ensuring Emily's literary legacy was
+          shared with the world. Emily also drew creative energy from close
+          companions like Susan Gilbert and maintained lively, affectionate
+          relationships through her letters. Though she chose a reclusive
+          life as an adult and never married, her correspondence reveals a
+          vibrant mind rich with love and connection, proving her quiet
+          lifestyle was defined by purposeful creativity rather than mere
+          isolation.
+        </p>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="story-section">
+        <p class="section-label">Chapter Three · Life's Great Mystery</p>
+        <h2 class="section-heading">
+          3. Why Death Appeared So Often in Her Poems
+        </h2>
+
+        <p>
+          Shaped by personal grief from the early loss of close friends
+          and family—and living near a local cemetery in 19th-century
+          Amherst—Emily Dickinson was intimately familiar with loss. Yet,
+          death in her poetry was far more than personal sadness; it served
+          as a powerful lens to explore faith, eternity, and the limits of
+          human knowledge, allowing belief and doubt to exist side by side.
+          In famous works like <em>"Because I could not stop for Death,"</em>
+          she reimagined mortality not as a terrifying end, but as a calm
+          journey into eternity. Ultimately, her fascination with death was
+          not about despair—alongside themes of hope, beauty, and humor,
+          she used mortality to confront life's deepest uncertainties and
+          ask the questions others feared to voice.
+        </p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="story-section" id="poetic-world">
+        <p class="section-label">Chapter Four · The Art of Seeing</p>
+        <h2 class="section-heading">
+          4. The Way She Saw the World Through Words
+        </h2>
+
+        <p>
+          Emily Dickinson’s poetic style was revolutionary for her era,
+          marked by short lines, slant rhymes, unexpected capitalization,
+          and signature dashes that create pauses and layered meanings.
+          She possessed a rare ability to transform simple observations—
+          like a bird or a carriage ride—into profound reflections on
+          identity, death, and hope. By leaving many poems open-ended,
+          Dickinson invited readers to bring their own experiences to her
+          work. Although only a handful of her poems were published during
+          her lifetime, the post-1886 publication of her preserved originals
+          revealed a soaring imagination and intellectual courage,
+          solidifying her as one of America’s most vital literary icons.
+        </p>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="poetry-section" id="famous-works">
+        <p class="section-label">Chapter Five · Open the Poetry Collection</p>
+        <h2 class="section-heading">Some of Her Famous Works</h2>
+
+        <p class="poetry-intro">
+          Emily Dickinson wrote about the subjects that make us human:
+          the need for hope, the fear of the unknown, and the desire to
+          understand who we are. These three poems show how differently
+          she could approach life. One offers comfort, another explores
+          mortality, and the third uses humour to question the importance
+          of being noticed by others.
+        </p>
+
+        <div class="poem-grid">
+
+          <article class="poem-card">
+            <p class="poem-number">Poem No. 01 · Hope</p>
+            <h3>Hope is the Thing with Feathers</h3>
+            <p>
+              A small, persistent bird becomes a symbol of the hope
+              that survives even in life's most difficult moments.
+            </p>
+            <a
+              class="poem-link"
+              href="https://www.poetryfoundation.org/poems/42889/hope-is-the-thing-with-feathers-314"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Read Hope is the Thing with Feathers at Poetry Foundation"
+            >
+              Read the poem ↗
+            </a>
+          </article>
+
+          <article class="poem-card">
+            <p class="poem-number">Poem No. 02 · Mortality</p>
+            <h3>Because I Could Not Stop for Death</h3>
+            <p>
+              Death becomes a mysterious carriage companion on a
+              journey that leads the speaker towards eternity.
+            </p>
+            <a
+              class="poem-link"
+              href="https://www.poetryfoundation.org/poems/47652/because-i-could-not-stop-for-death-479"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Read Because I Could Not Stop for Death at Poetry Foundation"
+            >
+              Read the poem ↗
+            </a>
+          </article>
+
+          <article class="poem-card">
+            <p class="poem-number">Poem No. 03 · Identity</p>
+            <h3>I'm Nobody! Who Are You?</h3>
+            <p>
+              With playful humour, Dickinson questions fame and
+              celebrates the freedom of remaining unknown.
+            </p>
+            <a
+              class="poem-link"
+              href="https://www.poetryfoundation.org/poems/52946/im-nobody-who-are-you-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Read I'm Nobody! Who Are You? at Poetry Foundation"
+            >
+              Read the poem ↗
+            </a>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- External websites -->
+      <section class="resources" id="further-reading">
+        <p class="section-label">Before You Close the Journal</p>
+        <h2 class="section-heading">Let the Reading Continue</h2>
+
+        <p>
+          There is still so much to discover in Emily Dickinson's world.
+          Explore her poems, letters, home, and the stories behind the
+          words that made her one of America's most remarkable poets.
+        </p>
+
+        <div class="resource-links">
+          <a
+            href="https://www.poetryfoundation.org/poets/emily-dickinson"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Poetry Foundation ↗
+          </a>
+
+          <a
+            href="https://www.emilydickinsonmuseum.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Emily Dickinson Museum ↗
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-flourish" aria-hidden="true">❦ ❧ ❦</div>
+    <p>A little journal dedicated to Emily Dickinson and her enduring words.</p>
+    <p>Designed with admiration for nineteenth-century literature.</p>
+    <a class="back-to-top" href="#top">Return to the first page ↑</a>
+  </footer>
+
+</body>
+</html>
